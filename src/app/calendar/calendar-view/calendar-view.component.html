@@ -1,0 +1,39 @@
+<div>
+  <h2>Calendar Appointments</h2>
+  <form [formGroup]="appointmentForm" (ngSubmit)="addAppointment()">
+    <mat-form-field>
+      <input matInput placeholder="Title" formControlName="title" />
+      <mat-error *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+        <span *ngIf="title?.errors?.['required']">Title is required.</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+        <span *ngIf="date?.errors?.['required']">Date is required.</span>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      Add Appointment
+    </button>
+  </form>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let appointment of appointments; let i = index" cdkDrag>
+      <app-appointment
+        [appointment]="appointment"
+        (delete)="deleteAppointment(i)"
+      ></app-appointment>
+    </div>
+  </div>
+  <mat-card class="calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+  </mat-card>
+  <p>Selected date: {{ selected }}</p>
+</div>
