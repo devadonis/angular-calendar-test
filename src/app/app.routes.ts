@@ -4,9 +4,7 @@ export const routes: Routes = [
   {
     path: 'calendar',
     loadComponent: () =>
-      import('./calendar/calendar-view/calendar-view.component').then(
-        (m) => m.CalendarViewComponent
-      ),
+      import('./calendar/calendar.component').then((m) => m.CalendarComponent),
   },
   { path: '', redirectTo: 'calendar', pathMatch: 'full' },
 ];

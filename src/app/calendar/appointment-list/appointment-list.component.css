@@ -1,0 +1,8 @@
+.appointment-list {
+  display: flex;
+  flex-flow: column;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}

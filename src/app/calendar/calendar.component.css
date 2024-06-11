@@ -1,0 +1,14 @@
+.calendar-view {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+mat-card {
+  flex: 0.8;
+}
+
+app-appointment-list {
+  flex: 1;
+}

@@ -1,0 +1,28 @@
+<div *ngIf="selectedDate" class="appointment-list">
+  <h2>Appointments on {{ selectedDate | date }}</h2>
+  <div
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    class="appointments-list"
+  >
+    <ng-container *ngFor="let appointment of appointments; let i = index">
+      <mat-card class="appointment-item" cdkDrag [cdkDragData]="appointment">
+        <mat-card-header>
+          <mat-card-title>{{ appointment.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-subtitle>{{ appointment.time }}</mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button
+            mat-button
+            color="warn"
+            (click)="deleteAppointment(appointment.id)"
+          >
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
